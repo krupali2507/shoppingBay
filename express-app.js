@@ -18,7 +18,7 @@ const expressApp = async (app) => {
 
   dbConnection()
     .then(() => {
-      console.log("DAtabse connected successfully!");
+      console.log("Databse connected successfully!");
       app.listen(PORT, () => {
         console.log(`Server listening on port ${PORT}`);
       });
@@ -28,6 +28,7 @@ const expressApp = async (app) => {
   //accessing routes
   app.use(internalLink.CUSTOMER.BASE_URL, customerRoute);
   app.use(internalLink.PRODUCT.BASE_URL, productRoute);
+  app.use(internalLink.CATEGORY.BASE_URL, productRoute);
   app.use(internalLink.SHOPPING.BASE_URL, shoppingsRoute);
 };
 

@@ -38,6 +38,7 @@ const login = async (req, res) => {
 
 const getProfile = async (req, res) => {
   try {
+    const data = req.currentUser;
     res
       .status(200)
       .send(
@@ -53,6 +54,8 @@ const getProfile = async (req, res) => {
 
 const getShopingDetails = async (req, res) => {
   try {
+    const { _id } = req.currentUser;
+    const data = await customercontroller.getShopingDetails({ _id });
     res
       .status(200)
       .send(

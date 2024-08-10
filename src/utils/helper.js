@@ -29,4 +29,17 @@ const generateSignature = async (payload) => {
   }
 };
 
-export default { hashPassword, validatePassword, generateSignature };
+const validateSignatute = async (token) => {
+  try {
+    return jwt.verify(token, APP_SECRET);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export default {
+  hashPassword,
+  validatePassword,
+  generateSignature,
+  validateSignatute,
+};

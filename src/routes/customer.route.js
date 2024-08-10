@@ -1,13 +1,14 @@
 import { Router } from "express";
+import { userAuth } from "../middlewares/index.js";
 import { customerApi } from "../api/index.js";
 
 const router = Router();
 
 router.post("/signup", customerApi.signup);
 router.post("/login", customerApi.login);
-router.post("/profile", customerApi.getProfile);
-router.post("/shoping-details", customerApi.getShopingDetails);
-router.post("/address", customerApi.addNewAddress);
-router.post("/wishlist", customerApi.getWishList);
+router.get("/profile", userAuth, customerApi.getProfile);
+router.get("/shoping-details", userAuth, customerApi.getShopingDetails);
+router.post("/address", userAuth, customerApi.addNewAddress);
+router.post("/wishlist", userAuth, customerApi.getWishList);
 
 export default router;

@@ -7,8 +7,8 @@ const findOneCustomer = async (filter) => {
 
 const createCustomer = async (userData) => {
   const customerRef = new customerModel(userData);
-  const data = await customerRef.save();
-  return data;
+  const userdata = await customerRef.save();
+  return userdata;
 };
 
 export default { findOneCustomer, createCustomer };

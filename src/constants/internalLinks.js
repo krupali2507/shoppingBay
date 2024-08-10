@@ -5,6 +5,9 @@ export default {
   PRODUCT: {
     BASE_URL: "/api/v1/products",
   },
+  CATEGORY: {
+    BASE_URL: "/api/v1/category",
+  },
   SHOPPING: {
     BASE_URL: "/api/v1/shoppings",
   },
