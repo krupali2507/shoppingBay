@@ -48,21 +48,29 @@ const login = async (userInputs) => {
 
 const getShopingDetails = async (userInputs) => {
   try {
-    const shoppingData = customerService.findOneCustomer(userInputs);
+    const shoppingData = customerService.findCustomerById(userInputs);
     return shoppingData;
   } catch (error) {
     throw error;
   }
 };
 
-const addNewAddress = async (userInputs) => {
+const addNewAddress = async (filter, address) => {
   try {
+    const newAddress = await customerService.createAddress(address);
+    console.log("🚀 ~ addNewAddress ~ newAddress:", newAddress);
+
+    const updatedAddress = await customerService.findCustomerandUpdate(filter, {
+      $push: { address: newAddress._id },
+    });
+    return updatedAddress;
   } catch (error) {
     throw error;
   }
 };
 const getWishList = async (userInputs) => {
   try {
+    return await customerService.findById(userInputs);
   } catch (error) {
     throw error;
   }

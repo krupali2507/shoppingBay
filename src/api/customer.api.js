@@ -71,13 +71,16 @@ const getShopingDetails = async (req, res) => {
 
 const addNewAddress = async (req, res) => {
   try {
+    const address = req.body;
+    const userId = req.currentUser._id;
+    const data = await customercontroller.addNewAddress(
+      { _id: userId },
+      address
+    );
     res
       .status(200)
       .send(
-        responseWrapper.customResponse(
-          "Profile Data Fetched successfully!",
-          data
-        )
+        responseWrapper.customResponse("Address added successfully!", data)
       );
   } catch (error) {
     res.status(400).send(responseWrapper.customError(error));
@@ -86,6 +89,8 @@ const addNewAddress = async (req, res) => {
 
 const getWishList = async (req, res) => {
   try {
+    const userId = req.currentUser._id;
+    const data = await customercontroller.getWishList({ _id: userId });
     res
       .status(200)
       .send(
