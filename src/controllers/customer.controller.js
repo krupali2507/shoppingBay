@@ -58,8 +58,6 @@ const getShopingDetails = async (userInputs) => {
 const addNewAddress = async (filter, address) => {
   try {
     const newAddress = await customerService.createAddress(address);
-    console.log("🚀 ~ addNewAddress ~ newAddress:", newAddress);
-
     const updatedAddress = await customerService.findCustomerandUpdate(filter, {
       $push: { address: newAddress._id },
     });
