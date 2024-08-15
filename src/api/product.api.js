@@ -41,7 +41,7 @@ const getProduct = async (req, res) => {
   try {
     const { id } = req.query;
     console.log("🚀 ~ getProduct ~ id:", id);
-    const productData = await productController.getProductsById(id);
+    const productData = await productController.getProductById(id);
     res
       .status(200)
       .send(
@@ -57,6 +57,7 @@ const getProduct = async (req, res) => {
 
 const getProducts = async (req, res) => {
   try {
+    const productData = await productController.getproductsById(req.body.ids);
     res
       .status(200)
       .send(
@@ -66,8 +67,94 @@ const getProducts = async (req, res) => {
         )
       );
   } catch (error) {
+    console.log("🚀 ~ getProducts ~ error:", error);
     res.status(400).send(responseWrapper.customError(error));
   }
 };
 
-export default { createProduct, productsByCategory, getProduct, getProducts };
+const addProductToWishList = async (req, res) => {
+  try {
+    const userId = req.currentUser._id,
+      productId = req.body.id;
+    const data = await productController.addToWishList(userId, productId);
+    res
+      .status(200)
+      .send(
+        responseWrapper.customResponse(
+          "Products added to wishlist successfully!",
+          data
+        )
+      );
+  } catch (error) {
+    console.log("🚀 ~ getProducts ~ error:", error);
+    res.status(400).send(responseWrapper.customError(error));
+  }
+};
+
+const removeProductFromWishList = async (req, res) => {
+  try {
+    const userId = req.currentUser._id,
+      productId = req.params.id;
+    const data = await productController.removeFromWishList(userId, productId);
+    res
+      .status(200)
+      .send(
+        responseWrapper.customResponse(
+          "Products Removed From wishlist successfully!",
+          data
+        )
+      );
+  } catch (error) {
+    console.log("🚀 ~ getProducts ~ error:", error);
+    res.status(400).send(responseWrapper.customError(error));
+  }
+};
+
+const addProductToCart = async (req, res) => {
+  try {
+    const userId = req.currentUser._id,
+      carData = req.body;
+    const data = await productController.addToCart(userId, carData);
+    res
+      .status(200)
+      .send(
+        responseWrapper.customResponse(
+          "Products added to wishlist successfully!",
+          data
+        )
+      );
+  } catch (error) {
+    console.log("🚀 ~ getProducts ~ error:", error);
+    res.status(400).send(responseWrapper.customError(error));
+  }
+};
+
+const removeProdcutFromCart = async (req, res) => {
+  try {
+    const userId = req.currentUser._id,
+      productId = req.params.id;
+    const data = await productController.removeFromCart(userId, productId);
+    res
+      .status(200)
+      .send(
+        responseWrapper.customResponse(
+          "Products Removed From Cart successfully!",
+          data
+        )
+      );
+  } catch (error) {
+    console.log("🚀 ~ getProducts ~ error:", error);
+    res.status(400).send(responseWrapper.customError(error));
+  }
+};
+
+export default {
+  createProduct,
+  productsByCategory,
+  getProduct,
+  getProducts,
+  addProductToWishList,
+  removeProductFromWishList,
+  addProductToCart,
+  removeProdcutFromCart,
+};

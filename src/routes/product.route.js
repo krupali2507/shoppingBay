@@ -1,11 +1,17 @@
 import { Router } from "express";
 import { productApi } from "../api/index.js";
+import { userAuth } from "../middlewares/index.js";
 
 const router = Router();
 
 router
   .get("/", productApi.getProduct)
   .post("/create", productApi.createProduct)
-  .get("/:type", productApi.productsByCategory);
+  .post("/ids", productApi.getProducts)
+  .get("/:type", productApi.productsByCategory)
+  .put("/wishlist", userAuth, productApi.addProductToWishList)
+  .delete("/wishlist/:id", userAuth, productApi.removeProductFromWishList)
+  .put("/cart", userAuth, productApi.addProductToCart)
+  .delete("/cart/:id", userAuth, productApi.removeProdcutFromCart);
 
 export default router;

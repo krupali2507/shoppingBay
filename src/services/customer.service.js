@@ -5,12 +5,10 @@ const findOneCustomer = async (filter) => {
   return data;
 };
 
-const findById = async (filter) => {
+const findById = async (filter, select = "") => {
   const data = await customerModel
     .findOne(filter)
-    .select(
-      "-password -createdAt -updatedAt -cart -email -orders -address -phone"
-    )
+    .select(select)
     .populate("wishlist");
   return data;
 };
@@ -21,14 +19,16 @@ const findCustomerById = async (filter) => {
     .populate("address")
     .populate("wishlist")
     .populate("orders")
-    .populate("cart");
+    .populate("cart.product");
   return data;
 };
 
-const findCustomerandUpdate = async (filter, update) => {
-  const data = await customerModel.findOneAndUpdate(filter, update, {
-    new: true,
-  });
+const findCustomerandUpdate = async (filter, update, select = "") => {
+  const data = await customerModel
+    .findOneAndUpdate(filter, update, {
+      new: true,
+    })
+    .select(select);
   return data;
 };
 

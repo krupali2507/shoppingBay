@@ -16,10 +16,18 @@ const productsByCategory = async (filter) => {
 };
 
 const getProductById = async (filter) => {
-  console.log("🚀 ~ getProductById ~ filter:", filter);
   const productData = await productModel.findById(filter);
-  console.log("🚀 ~ getProductById ~ productData:", productData);
   return productData;
 };
 
-export default { createProduct, productsByCategory, getProductById };
+const getproducts = async (filter) => {
+  const productsData = await productModel.find(filter);
+  return productsData;
+};
+
+export default {
+  createProduct,
+  productsByCategory,
+  getProductById,
+  getproducts,
+};
