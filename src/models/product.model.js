@@ -5,7 +5,7 @@ const productSchema = Schema(
     name: { type: String, required: true },
     desc: { type: String },
     banner: { type: String },
-    type: { type: String, required: true },
+    type: { type: Schema.Types.ObjectId, ref: "Category", required: true },
     unit: { type: Number, required: true },
     price: { type: Number, required: true },
     available: { type: Boolean, required: true },

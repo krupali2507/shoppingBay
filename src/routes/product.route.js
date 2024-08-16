@@ -8,7 +8,6 @@ router
   .get("/", productApi.getProduct)
   .post("/create", productApi.createProduct)
   .post("/ids", productApi.getProducts)
-  .get("/:type", productApi.productsByCategory)
   .put("/wishlist", userAuth, productApi.addProductToWishList)
   .delete("/wishlist/:id", userAuth, productApi.removeProductFromWishList)
   .put("/cart", userAuth, productApi.addProductToCart)
