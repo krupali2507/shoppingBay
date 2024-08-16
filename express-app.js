@@ -5,6 +5,7 @@ import { PORT } from "./secret_cred.js";
 import { internalLink } from "./src/constants/index.js";
 import { dbConnection } from "./src/connections/index.js";
 import {
+  categoryRoute,
   customerRoute,
   productRoute,
   shoppingsRoute,
@@ -28,7 +29,7 @@ const expressApp = async (app) => {
   //accessing routes
   app.use(internalLink.CUSTOMER.BASE_URL, customerRoute);
   app.use(internalLink.PRODUCT.BASE_URL, productRoute);
-  app.use(internalLink.CATEGORY.BASE_URL, productRoute);
+  app.use(internalLink.CATEGORY.BASE_URL, categoryRoute);
   app.use(internalLink.SHOPPING.BASE_URL, shoppingsRoute);
 };
 

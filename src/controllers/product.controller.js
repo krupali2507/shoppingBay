@@ -9,9 +9,9 @@ const createProduct = async (productInfo) => {
   }
 };
 
-const getProductsByCategory = async (type) => {
+const getProductsByCategory = async (id) => {
   try {
-    const productData = await productService.productsByCategory({ type });
+    const productData = await productService.productsByCategory({ type: id });
     return productData;
   } catch (error) {
     throw error;

@@ -21,9 +21,9 @@ const createProduct = async (req, res) => {
 
 const productsByCategory = async (req, res) => {
   try {
-    const type = req.params.type;
-    console.log("🚀 ~ productsByCategory ~ type:", type);
-    const productData = await productController.getProductsByCategory(type);
+    const id = req.params.id;
+    console.log("🚀 ~ productsByCategory ~ id:", id);
+    const productData = await productController.getProductsByCategory(id);
     res
       .status(200)
       .send(
