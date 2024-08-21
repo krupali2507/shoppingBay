@@ -38,7 +38,7 @@ const login = async (req, res) => {
 
 const getProfile = async (req, res) => {
   try {
-    const data = req.currentUser;
+    const data = await customercontroller.getProfileData(req.currentUser._id);
     res
       .status(200)
       .send(

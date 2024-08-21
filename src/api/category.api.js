@@ -35,21 +35,4 @@ const getCategories = async (req, res) => {
   }
 };
 
-const getCategory = async (req, res) => {
-  try {
-    const CategoryData = await categorycontroller.getCategories();
-    res
-      .status(200)
-      .send(
-        responseWrapper.customResponse(
-          "Category fetched successfully!",
-          CategoryData
-        )
-      );
-  } catch (error) {
-    console.log("🚀 ~ getCategories ~ error:", error);
-    res.status(400).send(responseWrapper.customError(error));
-  }
-};
-
-export default { createCategory, getCategories, getCategory };
+export default { createCategory, getCategories };

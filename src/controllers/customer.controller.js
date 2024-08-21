@@ -46,6 +46,19 @@ const login = async (userInputs) => {
   }
 };
 
+const getProfileData = async (userId) => {
+  try {
+    const existingCustomer = await customerService.findCustomerById({
+      _id: userId,
+    });
+    console.log("🚀 ~ getProfileData ~ existingCustomer:", existingCustomer);
+    if (!existingCustomer) throw new Error("No profile Data Found!");
+    return existingCustomer;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const getShopingDetails = async (userInputs) => {
   try {
     const shoppingData = customerService.findCustomerById(userInputs);
@@ -77,6 +90,7 @@ const getWishList = async (userInputs) => {
 export default {
   signup,
   login,
+  getProfileData,
   getShopingDetails,
   addNewAddress,
   getWishList,

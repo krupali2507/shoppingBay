@@ -28,7 +28,8 @@ const findCustomerandUpdate = async (filter, update, select = "") => {
     .findOneAndUpdate(filter, update, {
       new: true,
     })
-    .select(select);
+    .select(select)
+    .populate("address");
   return data;
 };
 
